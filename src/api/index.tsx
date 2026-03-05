@@ -11,7 +11,17 @@ export const fetchTrendingWallpapers = async () => {
     });
     const data = await res.json();
     return data.photos;
-  } catch (error) {
-    throw new Error('Failed to fetch trending wallpapers' + error);
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+
+export const fetchCategoryWallpapers = async (query: string) => {
+  try {
+    const res = await fetch(`${BASE_URL}/search?query=${query}`, { headers });
+    const data = await res.json();
+    return data.photos;
+  } catch (error: any) {
+    throw new Error(error);
   }
 };

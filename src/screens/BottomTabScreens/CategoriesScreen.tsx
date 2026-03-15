@@ -3,32 +3,33 @@ import React from 'react';
 import CategoryItem from '../../components/CategoryItem';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { bottomTabParamList } from '../../navigation/BottomTabNav';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const categoriesList = [
   {
     label: 'Nature',
     imgUrl:
-      'https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',
+      'https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
   },
   {
     label: 'Animals',
     imgUrl:
-      'https://images.pexels.com/photos/45170/kittens-cat-cat-puppy-rush-45170.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',
+      'https://images.pexels.com/photos/45170/kittens-cat-cat-puppy-rush-45170.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
   },
   {
     label: 'Cars',
     imgUrl:
-      'https://images.pexels.com/photos/207268/pexels-photo-207268.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',
+      'https://images.pexels.com/photos/207268/pexels-photo-207268.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
   },
   {
     label: 'Abstract',
     imgUrl:
-      'https://images.pexels.com/photos/1629236/pexels-photo-1629236.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',
+      'https://images.pexels.com/photos/1629236/pexels-photo-1629236.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
   },
   {
     label: 'Flowers',
     imgUrl:
-      'https://images.pexels.com/photos/1414042/pexels-photo-1414042.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',
+      'https://images.pexels.com/photos/1414042/pexels-photo-1414042.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
   },
 ];
 
@@ -39,7 +40,7 @@ type CategoriesScreenProps = BottomTabScreenProps<
 
 const CategoriesScreen = ({ navigation }: CategoriesScreenProps) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <Text
@@ -69,7 +70,7 @@ const CategoriesScreen = ({ navigation }: CategoriesScreenProps) => {
           style={{ marginTop: 20 }}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -78,7 +79,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#202020',
     paddingHorizontal: 20,
-    paddingTop: 30,
   },
   header: {
     paddingVertical: 15,

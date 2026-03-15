@@ -4,6 +4,8 @@ import FavouritesScreen from '../screens/BottomTabScreens/FavouritesScreen';
 import CategoriesScreen from '../screens/BottomTabScreens/CategoriesScreen';
 import ProfileScreen from '../screens/BottomTabScreens/ProfileScreen';
 import { TabIcon } from '../components/TabIcon';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Platform } from 'react-native';
 
 export type bottomTabParamList = {
   Home: undefined;
@@ -14,17 +16,17 @@ export type bottomTabParamList = {
 
 export const BottomTabNav = () => {
   const BottomTab = createBottomTabNavigator<bottomTabParamList>();
-
+  const insets = useSafeAreaInsets();
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        animation: 'fade',
         tabBarStyle: {
           backgroundColor: '#121212',
-          paddingBottom: 30,
+          borderColor: '#121212',
+          paddingBottom: Platform.OS === 'android' ? insets.bottom + 60 : 30,
         },
       }}
     >

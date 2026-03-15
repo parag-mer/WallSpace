@@ -27,19 +27,12 @@ const LinkInfo = ({
   value: string;
   url: string;
 }) => {
-  const openLink = async () => {
-    const supported = await Linking.canOpenURL(url);
-    if (supported) {
-      await Linking.openURL(url);
-    }
-  };
-
   return (
     <View style={styles.infoContainer}>
       <Text style={styles.label}>{label}</Text>
 
       <Pressable
-        onPress={openLink}
+        onPress={() => Linking.openURL(url)}
         style={styles.linkRow}
         android_ripple={{ color: '#E5E5EA' }}
       >

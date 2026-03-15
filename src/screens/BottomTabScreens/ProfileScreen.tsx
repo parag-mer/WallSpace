@@ -1,9 +1,15 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Share, Linking } from 'react-native';
 import React from 'react';
+import { ProfileRow } from '../../components/ProfileRow';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { bottomTabParamList } from '../../navigation/BottomTabNav';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const ProfileScreen = () => {
+type ProfileScreenProps = BottomTabScreenProps<bottomTabParamList, 'Profile'>;
+
+const ProfileScreen = ({ navigation }: ProfileScreenProps) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <Text
@@ -17,7 +23,50 @@ const ProfileScreen = () => {
           Profile
         </Text>
       </View>
-    </View>
+
+      <View style={styles.section}>
+        <ProfileRow icon="heart" title="Favourites" />
+        <ProfileRow icon="download" title="Downloads" />
+      </View>
+
+      <View style={styles.section}>
+        <ProfileRow icon="star" title="Rate App" />
+        <ProfileRow
+          icon="share-android"
+          title="Share App"
+          onPress={() =>
+            Share.share({ message: 'Check out WallSpace wallpaper app!' })
+          }
+        />
+        <ProfileRow
+          icon="mail"
+          title="Send Feedback"
+          onPress={() => Linking.openURL('mailto:test@yopmail.com')}
+        />
+      </View>
+
+      <View style={styles.section}>
+        <ProfileRow
+          icon="info"
+          title="About"
+          onPress={() => navigation.getParent()?.navigate('AboutScreen')}
+        />
+        <ProfileRow icon="shield" title="Privacy Policy" />
+      </View>
+      <Text
+        style={{
+          position: 'absolute',
+          bottom: 10,
+          color: '#A8B5DB',
+          left: 0,
+          right: 0,
+          textAlign: 'center',
+          opacity: 0.8,
+        }}
+      >
+        WallSpace | v1.0.0
+      </Text>
+    </SafeAreaView>
   );
 };
 
@@ -26,7 +75,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#202020',
     paddingHorizontal: 20,
-    paddingTop: 30,
   },
   header: {
     paddingVertical: 15,
@@ -35,6 +83,23 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     color: 'white',
+  },
+  section: {
+    marginBottom: 25,
+    backgroundColor: '#2b2b2b',
+    borderRadius: 12,
+    paddingVertical: 10,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    gap: 14,
+  },
+  rowText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
 

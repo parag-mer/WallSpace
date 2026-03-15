@@ -19,3 +19,17 @@ buildscript {
 }
 
 apply plugin: "com.facebook.react.rootproject"
+
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+
+        // React Native Android artifacts
+        maven { url("$rootDir/../node_modules/react-native/android") }
+
+        // JSC / Hermes
+        maven { url("$rootDir/../node_modules/jsc-android/dist") }
+    }
+}

@@ -24,6 +24,7 @@ import {
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import { ZoomableImage } from '../components/ZoomableImage';
+import SelectorModal from '../components/SelectorModal';
 
 type ViewerScreenProps = StackScreenProps<RootStackParamList, 'ViewerScreen'>;
 
@@ -38,7 +39,8 @@ export const ViewerScreen = ({ navigation, route }: ViewerScreenProps) => {
       photo => photo.id === imgData.id,
     ),
   );
-  const [modalVisible, setModalVisible] = useState(false);
+  const [infoModalVisible, setInfoModalVisible] = useState(false);
+  const [selectorModalVisible, setSelectorModalVisible] = useState(false);
 
   const headerAnim = useRef(new Animated.Value(0)).current;
   const footerAnim = useRef(new Animated.Value(0)).current;
@@ -64,7 +66,10 @@ export const ViewerScreen = ({ navigation, route }: ViewerScreenProps) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: 'black' }}
+      edges={['bottom']}
+    >
       {/* header */}
       <Animated.View
         onLayout={e => {
@@ -111,14 +116,11 @@ export const ViewerScreen = ({ navigation, route }: ViewerScreenProps) => {
           name="info"
           size={24}
           color={'white'}
-          onPress={() => setModalVisible(true)}
+          onPress={() => setInfoModalVisible(true)}
         />
       </Animated.View>
 
-      <Pressable
-        onPress={toggleBars}
-        style={{ flex: 1, backgroundColor: 'black' }}
-      >
+      <Pressable onPress={toggleBars} style={{ flex: 1 }}>
         <Image
           source={{ uri: imgData.src.tiny }}
           style={StyleSheet.absoluteFillObject}
@@ -154,15 +156,26 @@ export const ViewerScreen = ({ navigation, route }: ViewerScreenProps) => {
               : dispatch(addToFav(imgData))
           }
         />
-        <Pressable style={styles.bottomBtnStyle}>
+        <Pressable
+          style={styles.bottomBtnStyle}
+          onPress={() => setSelectorModalVisible(true)}
+        >
           <Icon name="image" size={24} color={'white'} />
           <Text style={styles.bottomBtnText}>Set</Text>
         </Pressable>
       </Animated.View>
       <InfoModal
-        visible={modalVisible}
-        setVisible={setModalVisible}
+        visible={infoModalVisible}
+        setVisible={setInfoModalVisible}
         details={imgData}
+      />
+      <SelectorModal
+        setVisible={setSelectorModalVisible}
+        visible={selectorModalVisible}
+        onPress={mode => {
+          setSelectorModalVisible(false);
+          navigation.navigate('WallpaperPreviewScreen', { imgData, mode });
+        }}
       />
     </SafeAreaView>
   );

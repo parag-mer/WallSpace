@@ -25,7 +25,11 @@ const ProfileScreen = ({ navigation }: ProfileScreenProps) => {
       </View>
 
       <View style={styles.section}>
-        <ProfileRow icon="heart" title="Favourites" />
+        <ProfileRow
+          icon="heart"
+          title="Favourites"
+          onPress={() => navigation.navigate('Favourites')}
+        />
         <ProfileRow icon="download" title="Downloads" />
       </View>
 

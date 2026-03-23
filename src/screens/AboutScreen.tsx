@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, Pressable, Linking } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Linking,
+  Image,
+} from 'react-native';
 import Icon from '@react-native-vector-icons/octicons';
 import Animated, { FadeInUp } from 'react-native-reanimated';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -22,7 +29,10 @@ export const AboutScreen = ({ navigation }: AboutScreenProps) => {
       </View>
       {/* Hero */}
       <Animated.View entering={FadeInUp.duration(400)} style={styles.hero}>
-        <Icon name="image" size={64} color="white" />
+        <Image
+          source={require('../../assets/WallSpaceLogo.png')}
+          style={{ width: 100, height: 100 }}
+        />
         <Text style={styles.appName}>WallSpace</Text>
         <Text style={styles.tagline}>Beautiful wallpapers for your device</Text>
 

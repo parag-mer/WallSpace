@@ -4,6 +4,7 @@ import { BottomTabNav } from './BottomTabNav';
 import { ViewerScreen } from '../screens/ViewerScreen';
 import CategoryViewerScreen from '../screens/CategoryViewerScreen';
 import { AboutScreen } from '../screens/AboutScreen';
+import WallpaperPreviewScreen from '../screens/WallpaperPreviewScreen';
 
 export type RootStackParamList = {
   BottomTabNav: undefined;
@@ -14,6 +15,10 @@ export type RootStackParamList = {
     categoryName: string;
   };
   AboutScreen: undefined;
+  WallpaperPreviewScreen: {
+    imgData: any;
+    mode: 'home' | 'lock' | 'both';
+  };
 };
 
 const RootNav = () => {
@@ -33,6 +38,10 @@ const RootNav = () => {
         component={CategoryViewerScreen}
       />
       <Stack.Screen name="AboutScreen" component={AboutScreen} />
+      <Stack.Screen
+        name="WallpaperPreviewScreen"
+        component={WallpaperPreviewScreen}
+      />
     </Stack.Navigator>
   );
 };

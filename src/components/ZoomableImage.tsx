@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, Dimensions, Image } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
@@ -82,6 +83,32 @@ export const ZoomableImage = ({ uri }: { uri: string }) => {
     };
   });
 
+  useFocusEffect(
+    useCallback(() => {
+      let isActive = true;
+
+      const loadImage = async () => {
+        setLoading(true);
+
+        try {
+          await Image.prefetch(uri);
+        } catch (e) {
+          console.log('Prefetch failed', e);
+        }
+
+        if (isActive) {
+          setLoading(false);
+        }
+      };
+
+      loadImage();
+
+      return () => {
+        isActive = false;
+      };
+    }, [uri]),
+  );
+
   return (
     <>
       <GestureDetector gesture={gesture}>
@@ -90,9 +117,6 @@ export const ZoomableImage = ({ uri }: { uri: string }) => {
           source={{ uri }}
           resizeMode={'contain'}
           style={[{ width, height }, animatedStyle]}
-          onLoadStart={() => uri && setLoading(true)}
-          onLoadEnd={() => setLoading(false)}
-          onError={() => setLoading(false)}
         />
       </GestureDetector>
       {loading && (

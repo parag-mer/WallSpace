@@ -13,6 +13,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation/RootNav';
 import { applyWallpaper } from '@codeooze/react-native-wallpaper-manager';
+import Icon from '@react-native-vector-icons/octicons';
 
 type WallpaperPreviewScreenProps = StackScreenProps<
   RootStackParamList,
@@ -81,7 +82,7 @@ const WallpaperPreviewScreen = ({
       <SafeAreaView style={styles.container}>
         <View style={styles.header}>
           <Pressable onPress={() => navigation.goBack()}>
-            <Text style={{ fontSize: 30, color: 'white' }}>←</Text>
+            <Icon name="arrow-left" size={24} color={'white'} />
           </Pressable>
         </View>
         <View>

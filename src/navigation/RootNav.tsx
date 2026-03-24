@@ -5,6 +5,7 @@ import { ViewerScreen } from '../screens/ViewerScreen';
 import CategoryViewerScreen from '../screens/CategoryViewerScreen';
 import { AboutScreen } from '../screens/AboutScreen';
 import WallpaperPreviewScreen from '../screens/WallpaperPreviewScreen';
+import SplashScreen from '../screens/SplashScreen';
 
 export type RootStackParamList = {
   BottomTabNav: undefined;
@@ -19,18 +20,20 @@ export type RootStackParamList = {
     imgData: any;
     mode: 'home' | 'lock' | 'both';
   };
+  SplashScreen: undefined;
 };
 
 const RootNav = () => {
   const Stack = createStackNavigator<RootStackParamList>();
   return (
     <Stack.Navigator
-      initialRouteName="BottomTabNav"
+      initialRouteName="SplashScreen"
       screenOptions={{
         headerShown: false,
         animation: 'slide_from_right',
       }}
     >
+      <Stack.Screen name="SplashScreen" component={SplashScreen} />
       <Stack.Screen name="BottomTabNav" component={BottomTabNav} />
       <Stack.Screen name="ViewerScreen" component={ViewerScreen} />
       <Stack.Screen

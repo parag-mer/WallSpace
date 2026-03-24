@@ -23,7 +23,7 @@ export const AboutScreen = ({ navigation }: AboutScreenProps) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Pressable onPress={() => navigation.goBack()}>
-          <Text style={{ fontSize: 30, color: 'white' }}>←</Text>
+          <Icon name="arrow-left" size={24} color={'white'} />
         </Pressable>
         {/* <Text style={styles.headerTitle}>About</Text> */}
       </View>

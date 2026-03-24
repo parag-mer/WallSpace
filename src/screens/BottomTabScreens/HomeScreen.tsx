@@ -15,12 +15,14 @@ import { fetchTrendingWallpapers } from '../../api';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { bottomTabParamList } from '../../navigation/BottomTabNav';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNetwork } from '../../hooks/useNetwork';
 
 const IMAGE_WIDTH = Dimensions.get('window').width / 2 - 30;
 
 type HomeScreenProps = BottomTabScreenProps<bottomTabParamList, 'Home'>;
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
+  const isConnected = useNetwork();
   const {
     data,
     isLoading,
@@ -38,6 +40,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
       const url = new URL(lastPage.next_page);
       return parseInt(url.searchParams.get('page') ?? '1', 10);
     },
+    enabled: !!isConnected,
   });
 
   const listRef = useRef<FlatList>(null);

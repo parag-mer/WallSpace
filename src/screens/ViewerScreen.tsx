@@ -93,7 +93,7 @@ export const ViewerScreen = ({ navigation, route }: ViewerScreenProps) => {
         }}
       >
         <Pressable onPress={() => navigation.goBack()}>
-          <Text style={{ fontSize: 30, color: 'white' }}>←</Text>
+          <Icon name="arrow-left" size={24} color={'white'} />
         </Pressable>
         <View
           style={{

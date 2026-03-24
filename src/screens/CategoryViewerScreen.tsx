@@ -15,6 +15,7 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { fetchCategoryWallpapers } from '../api';
 import { RootStackParamList } from '../navigation/RootNav';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Icon from '@react-native-vector-icons/octicons';
 
 type CategoryViewerScreenProps = StackScreenProps<
   RootStackParamList,
@@ -75,7 +76,7 @@ const CategoryViewerScreen = ({
       {/* Header */}
       <View style={styles.header}>
         <Pressable onPress={() => navigation.goBack()}>
-          <Text style={{ fontSize: 30, color: 'white' }}>←</Text>
+          <Icon name="arrow-left" size={24} color={'white'} />
         </Pressable>
         <Text style={styles.headerTitle}>{categoryName}</Text>
       </View>

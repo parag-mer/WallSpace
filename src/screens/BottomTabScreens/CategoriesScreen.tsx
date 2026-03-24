@@ -31,6 +31,31 @@ const categoriesList = [
     imgUrl:
       'https://images.pexels.com/photos/1414042/pexels-photo-1414042.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
   },
+  {
+    label: 'Space',
+    imgUrl:
+      'https://images.pexels.com/photos/2694037/pexels-photo-2694037.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
+  },
+  {
+    label: 'Minimal',
+    imgUrl:
+      'https://images.pexels.com/photos/162616/coffee-work-desk-mug-keyboard-162616.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
+  },
+  {
+    label: 'AMOLED',
+    imgUrl:
+      'https://images.pexels.com/photos/29059125/pexels-photo-29059125.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
+  },
+  {
+    label: 'City',
+    imgUrl:
+      'https://images.pexels.com/photos/302820/pexels-photo-302820.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
+  },
+  {
+    label: 'Aesthetic',
+    imgUrl:
+      'https://images.pexels.com/photos/1037992/pexels-photo-1037992.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
+  },
 ];
 
 type CategoriesScreenProps = BottomTabScreenProps<

@@ -4,6 +4,7 @@ import { ProfileRow } from '../../components/ProfileRow';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { bottomTabParamList } from '../../navigation/BottomTabNav';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { rateApp } from '../../utils/RateApp';
 
 type ProfileScreenProps = BottomTabScreenProps<bottomTabParamList, 'Profile'>;
 
@@ -30,11 +31,10 @@ const ProfileScreen = ({ navigation }: ProfileScreenProps) => {
           title="Favourites"
           onPress={() => navigation.navigate('Favourites')}
         />
-        <ProfileRow icon="download" title="Downloads" />
       </View>
 
       <View style={styles.section}>
-        <ProfileRow icon="star" title="Rate App" />
+        <ProfileRow icon="star" title="Rate App" onPress={rateApp} />
         <ProfileRow
           icon="share-android"
           title="Share App"
@@ -55,7 +55,13 @@ const ProfileScreen = ({ navigation }: ProfileScreenProps) => {
           title="About"
           onPress={() => navigation.getParent()?.navigate('AboutScreen')}
         />
-        <ProfileRow icon="shield" title="Privacy Policy" />
+        <ProfileRow
+          icon="shield"
+          title="Privacy Policy"
+          onPress={() =>
+            Linking.openURL('https://parag-mer.github.io/wallspace-policy/')
+          }
+        />
       </View>
       <Text
         style={{
@@ -68,7 +74,7 @@ const ProfileScreen = ({ navigation }: ProfileScreenProps) => {
           opacity: 0.8,
         }}
       >
-        WallSpace | v1.0.0
+        WallSpace | v1.0
       </Text>
     </SafeAreaView>
   );

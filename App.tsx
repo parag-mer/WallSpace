@@ -9,6 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { useNetwork } from './src/hooks/useNetwork';
 import { setupReactQueryOnlineManager } from './src/utils/ReactQueryOnlineManager';
 import { useEffect } from 'react';
+import Toast from 'react-native-toast-message';
 
 const queryClient = new QueryClient();
 
@@ -32,7 +33,6 @@ function App() {
             <StatusBar translucent backgroundColor="transparent" />
             <NavigationContainer>
               <SafeAreaProvider>
-                <StatusBar barStyle={'light-content'} />
                 <RootNav />
               </SafeAreaProvider>
             </NavigationContainer>

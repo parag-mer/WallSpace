@@ -16,6 +16,7 @@ import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { bottomTabParamList } from '../../navigation/BottomTabNav';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNetwork } from '../../hooks/useNetwork';
+import { Octicons } from '@react-native-vector-icons/octicons';
 
 const IMAGE_WIDTH = Dimensions.get('window').width / 2 - 30;
 
@@ -140,7 +141,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
           onPress={scrollToTop}
           activeOpacity={0.8}
         >
-          <Text style={styles.arrow}>↑</Text>
+          <Octicons name="arrow-up" size={24} color={'white'} />
         </TouchableOpacity>
       )}
     </SafeAreaView>

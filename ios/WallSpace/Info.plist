@@ -63,5 +63,10 @@
 			<string>FontAwesome6_Solid.ttf</string>
 			<string>Octicons.ttf</string>
 		</array>
+		<key>NSPhotoLibraryAddUsageDescription</key>
+		<string>We need access to save wallpapers</string>
+
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>We need access to your photos</string>
 	</dict>
 </plist>

@@ -7,13 +7,15 @@ import {
   Dimensions,
   Image,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation/RootNav';
 import { applyWallpaper } from '@codeooze/react-native-wallpaper-manager';
 import Icon from '@react-native-vector-icons/octicons';
+import Toast from 'react-native-toast-message';
 
 type WallpaperPreviewScreenProps = StackScreenProps<
   RootStackParamList,
@@ -62,24 +64,42 @@ const WallpaperPreviewScreen = ({
   route,
 }: WallpaperPreviewScreenProps) => {
   const { imgData, mode } = route.params;
+  const [loading, setLoading] = useState(false);
 
   const handleSetWallpaper = (src: string, mode: 'home' | 'lock' | 'both') => {
+    setLoading(true);
     applyWallpaper(src, mode)
       .then(response => {
-        Alert.alert(response);
+        setLoading(false);
+        Toast.show({
+          type: 'success',
+          text1: 'Wallpaper Set 🎉',
+          text2: response,
+          onHide: () =>
+            setTimeout(() => {
+              navigation.goBack();
+            }, 500),
+        });
       })
       .catch(error => {
-        Alert.alert(error.message);
+        setLoading(false);
+        Toast.show({
+          type: 'error',
+          text1: 'Something went wrong',
+          text2: error.message,
+          onHide: () => navigation.goBack(),
+        });
       });
   };
 
   return (
     <ImageBackground
       source={{ uri: imgData.src.tiny }}
-      style={StyleSheet.absoluteFillObject}
+      style={{ flex: 1 }}
       blurRadius={10}
     >
       <SafeAreaView style={styles.container}>
+        <Toast />
         <View style={styles.header}>
           <Pressable onPress={() => navigation.goBack()}>
             <Icon name="arrow-left" size={24} color={'white'} />
@@ -142,6 +162,7 @@ const WallpaperPreviewScreen = ({
                   height: height - 300,
                   alignSelf: 'center',
                   borderRadius: 10,
+                  marginTop: 10,
                 }}
               />
               {mode === 'home' && (
@@ -183,15 +204,19 @@ const WallpaperPreviewScreen = ({
           }}
           onPress={() => handleSetWallpaper(imgData.src.original, mode)}
         >
-          <Text style={{ color: 'white', fontSize: 18, fontWeight: '700' }}>
-            Set to{' '}
-            {mode === 'both'
-              ? 'Home and Lock'
-              : mode === 'home'
-              ? 'Home'
-              : 'Lock'}{' '}
-            screen
-          </Text>
+          {loading ? (
+            <ActivityIndicator />
+          ) : (
+            <Text style={{ color: 'white', fontSize: 18, fontWeight: '700' }}>
+              Set to{' '}
+              {mode === 'both'
+                ? 'Home and Lock'
+                : mode === 'home'
+                ? 'Home'
+                : 'Lock'}{' '}
+              screen
+            </Text>
+          )}
         </Pressable>
       </SafeAreaView>
     </ImageBackground>

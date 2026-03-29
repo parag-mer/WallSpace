@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React, { Dispatch, SetStateAction } from 'react';
-import Icon from '@react-native-vector-icons/octicons';
 
 const SelectorModal = ({
   setVisible,
@@ -21,30 +20,36 @@ const SelectorModal = ({
   return (
     <Modal
       visible={visible}
-      onRequestClose={() => setVisible(!visible)}
+      onRequestClose={() => setVisible(false)}
       animationType={'slide'}
       transparent
     >
       <Pressable style={styles.modalOverlay} onPress={() => setVisible(false)}>
-        <Pressable style={styles.bottomSheet}>
+        <Pressable
+          style={styles.bottomSheet}
+          onPress={e => e.stopPropagation()}
+        >
           <View style={styles.modalContainer}>
             <View style={styles.handle} />
             <Text style={styles.header}>What would you like to do?</Text>
             <TouchableOpacity
               style={styles.optBtn}
               onPress={() => onPress('home')}
+              activeOpacity={0.7}
             >
               <Text style={styles.optBtnText}>Set on home screen</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.optBtn}
               onPress={() => onPress('lock')}
+              activeOpacity={0.7}
             >
               <Text style={styles.optBtnText}>Set on lock screen</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.optBtn}
               onPress={() => onPress('both')}
+              activeOpacity={0.7}
             >
               <Text style={styles.optBtnText}>Set on both screens</Text>
             </TouchableOpacity>
@@ -99,24 +104,28 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   optBtn: {
-    padding: 10,
+    paddingVertical: 14,
+    paddingHorizontal: 10,
     marginTop: 10,
+    borderRadius: 10,
   },
   optBtnText: {
     fontSize: 16,
   },
   cancelBtn: {
     backgroundColor: 'black',
-    paddingVertical: 10,
-    paddingHorizontal: 100,
+    paddingVertical: 12,
+    paddingHorizontal: 40,
     alignSelf: 'center',
     borderRadius: 16,
     marginTop: 20,
+    width: '90%',
   },
   cancelBtnText: {
     color: 'white',
     fontSize: 16,
-    fontWeight: 500,
+    fontWeight: '500',
+    textAlign: 'center',
   },
 });
 

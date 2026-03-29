@@ -12,12 +12,7 @@ export const TabIcon = ({
 }) => {
   return (
     <View style={styles.unfocusedTab}>
-      <Icon
-        name={icon}
-        color={focused ? '#fff' : '#666666'}
-        size={focused ? 30 : 20}
-      />
-      {/* {focused && <Text style={styles.focusedText}>{title}</Text>} */}
+      <Icon name={icon} color={focused ? '#fff' : '#666666'} size={24} />
     </View>
   );
 };
